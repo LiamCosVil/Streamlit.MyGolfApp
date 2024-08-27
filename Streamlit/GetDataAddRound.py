@@ -1,7 +1,7 @@
 import pyodbc
 import pandas as pd
 
-conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=https://github.com/LiamCosVil/Streamlit.MyGolfApp/blob/1455f2a3c5395e8509c5bba3d7835a04bd6c7dec/Streamlit/MySG-Try.accdb;')
+conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=MySG-Try.accdb;')
 cursor = conn.cursor()
 
 class Get_Access():
