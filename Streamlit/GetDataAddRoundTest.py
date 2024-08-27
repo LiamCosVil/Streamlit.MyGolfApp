@@ -2,19 +2,19 @@ import pandas as pd
 
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
-        with pd.ExcelWriter('SaveFile.xlsx') as writer:  
+        with pd.ExcelWriter('Streamlit/SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
             New_Shots_df.to_excel(writer, sheet_name="Save_Shots")
 
     def Read():
-        New_Round_df = pd.read_excel('SaveFile.xlsx', sheet_name="Save_Round")
+        New_Round_df = pd.read_excel('Streamlit/SaveFile.xlsx', sheet_name="Save_Round")
         New_Round_df.drop(columns=New_Round_df.columns[0], axis=1, inplace=True)
         
-        New_Holes_df = pd.read_excel('SaveFile.xlsx', sheet_name="Save_Holes")
+        New_Holes_df = pd.read_excel('Streamlit/SaveFile.xlsx', sheet_name="Save_Holes")
         New_Holes_df.drop(columns=New_Holes_df.columns[0], axis=1, inplace=True)
         
-        New_Shots_df = pd.read_excel('SaveFile.xlsx', sheet_name="Save_Shots")
+        New_Shots_df = pd.read_excel('Streamlit/SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         return New_Round_df, New_Holes_df, New_Shots_df
@@ -22,32 +22,32 @@ class Save_File():
        
 class DFs():
     def Courses_df():
-        Courses_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Courses")
+        Courses_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Courses")
         Courses_df.drop(columns=Courses_df.columns[0], axis=1, inplace=True)
         return Courses_df
         
     def Players_df():
-        Players_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Players")
+        Players_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Players")
         Players_df.drop(columns=Players_df.columns[0], axis=1, inplace=True)
         return Players_df
 
     def Rounds_df():
-        Rounds_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Rounds")
+        Rounds_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Rounds")
         Rounds_df.drop(columns=Rounds_df.columns[0], axis=1, inplace=True)
         return Rounds_df
 
     def Holes_df():
-        Holes_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Holes")
+        Holes_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Holes")
         Holes_df.drop(columns=Holes_df.columns[0], axis=1, inplace=True)
         return Holes_df
             
     def Shots_df():
-        Shots_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Shots")
+        Shots_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Shots")
         Shots_df.drop(columns=Shots_df.columns[0], axis=1, inplace=True)
         return Shots_df
 
     def Clubs_df():
-        Clubs_df = pd.read_excel('AddRoundDFs.xlsx', sheet_name="Clubs")
+        Clubs_df = pd.read_excel('Streamlit/AddRoundDFs.xlsx', sheet_name="Clubs")
         Clubs_df.drop(columns=Clubs_df.columns[0], axis=1, inplace=True)
         return Clubs_df
               
@@ -129,7 +129,7 @@ class ExcelAppend():
             "Course Holes": [Course_Holes],
             "Course Location": [Course_Location]
         })
-        df_existing = pd.read_excel("AddRoundDFs.xlsx")
+        df_existing = pd.read_excel("Streamlit/AddRoundDFs.xlsx")
         df_combined = pd.concat([df_existing, df], ignore_index=True)
-        with pd.ExcelWriter("AddRoundDFs.xlsx", mode="a",engine="openpyxl", if_sheet_exists="replace") as writer:
+        with pd.ExcelWriter("Streamlit/AddRoundDFs.xlsx", mode="a",engine="openpyxl", if_sheet_exists="replace") as writer:
             df_combined.to_excel(writer, sheet_name="Courses", index=4)
