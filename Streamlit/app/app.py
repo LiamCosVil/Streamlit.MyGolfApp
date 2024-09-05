@@ -7,7 +7,7 @@ st.markdown(" <style> div[class^='css-1544g2n'] { padding-top: 1rem; } </style> 
 pg = st.navigation([
     st.Page("Homey.py", title="Home"),
     st.Page("ViewSG.py", title="ViewSG"),
-    st.Page("AddRound\AddRound.py", title="AddRound"),
+    st.Page("AddRound/AddRound.py", title="AddRound"),
     st.Page("AddRound\AddRoundTest.py", title="AddRoundTest"),
     st.Page("Stats\ViewStats.py", title="ViewStats"),
 ])
