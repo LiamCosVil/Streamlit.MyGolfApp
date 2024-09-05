@@ -6,7 +6,7 @@ st.markdown(" <style> div[class^='css-1544g2n'] { padding-top: 1rem; } </style> 
 
 pg = st.navigation([
     st.Page("Home.py", title="Home"),
-    st.Page("LiamCosVil/Streamlit.MyGolfApp/Streamlit/app/SG/ViewSG.py", title="ViewSG"),
+    st.Page("rhdfghdrtss.py", title="ViewSG"),
     st.Page("AddRound\AddRound.py", title="AddRound"),
     st.Page("AddRound\AddRoundTest.py", title="AddRoundTest"),
     st.Page("Stats\ViewStats.py", title="ViewStats"),
