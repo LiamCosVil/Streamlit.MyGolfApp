@@ -32,7 +32,7 @@ def Add_course_popup():
             AccessWrite.Course(Course_Name, Course_Par, Course_Holes, Course_Location)
             st.rerun()
 @st.dialog("Finish & Save Round")
-def Save_Round():
+def Save_Round(New_Round_df, New_Holes_df, New_Shots_df):
     Check_TF, Errors = Checks_Save.CheckRoundComplete(New_Round_df, New_Holes_df, New_Shots_df)
     if Check_TF:
         st.write("Are you sure you want to finish your round now?")
@@ -70,7 +70,7 @@ if Restart:
     Restart_popup()
 if Save_Round_Col.button("Finish Round"):
     New_Shots_df = New_Shots_df.sort_values(by=["Hole ID", "Shot Number"])
-    Save_Round()
+    Save_Round(New_Round_df, New_Holes_df, New_Shots_df)
 
 with st.sidebar:
     Round_Form = st.form("round_form", border=False)
