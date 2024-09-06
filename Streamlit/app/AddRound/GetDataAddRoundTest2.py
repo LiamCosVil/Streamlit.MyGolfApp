@@ -32,19 +32,19 @@ class DFs():
  
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
-        with pd.ExcelWriter('Streamlit/data/SaveFile.xlsx') as writer:  
+        with pd.ExcelWriter('data\SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
             New_Shots_df.to_excel(writer, sheet_name="Save_Shots")
 
     def Read():
-        New_Round_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Round")
+        New_Round_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Round")
         New_Round_df.drop(columns=New_Round_df.columns[0], axis=1, inplace=True)
         
-        New_Holes_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Holes")
+        New_Holes_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Holes")
         New_Holes_df.drop(columns=New_Holes_df.columns[0], axis=1, inplace=True)
         
-        New_Shots_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Shots")
+        New_Shots_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         return New_Round_df, New_Holes_df, New_Shots_df
@@ -57,19 +57,19 @@ class AccessWrite():
                             ([Hole ID], [Round ID], [Hole Number], [Played As], [Hole Par], [Hole Score], [Hole Handycap], [GIR], [UP&D], [Fairway OTT], [Bunker UP&D], [Putts], [Hole Length])
                             VALUES 
                             (
-                                """ + str(Hole_ID) + """,
-                                """ + str(Round_ID) + """,
-                                """ + str(Hole_Number) + """,
-                                """ + str(Played_As) + """,
-                                """ + str(Hole_Par) + """,
-                                """ + str(Hole_Score) + """,
-                                """ + str(Hole_Handycap) + """,
-                                """ + str(GIR) + """,
-                                """ + str(UP_D) + """,
-                                """ + str(Fairway_OOT) + """,
-                                """ + str(Bunker_UP_D) + """,
-                                """ + str(Putts) + """,
-                                """ + str(Hole_Length) + """
+                                '""" + str(Hole_ID) + """',
+                                '""" + str(Round_ID) + """',
+                                '""" + str(Hole_Number) + """',
+                                '""" + str(Played_As) + """',
+                                '""" + str(Hole_Par) + """',
+                                '""" + str(Hole_Score) + """',
+                                '""" + str(Hole_Handycap) + """',
+                                '""" + str(GIR) + """',
+                                '""" + str(UP_D) + """',
+                                '""" + str(Fairway_OOT) + """',
+                                '""" + str(Bunker_UP_D) + """',
+                                '""" + str(Putts) + """',
+                                '""" + str(Hole_Length) + """'
                             )"""
                             ))
             s.commit()
@@ -81,18 +81,18 @@ class AccessWrite():
                             ([Shot ID], [Hole ID], [Shot Number], [Distance2Hole], [Clubs], [Lie], [Desired Shot Type], [Slope], [Recovery Shot?], [Shot Type], [Distance After Shot], [In The Hole?], [Fall (Only Putt)])
                             VALUES 
                             (
-                                """ + str(Shot_ID) + """,
-                                """ + str(Hole_ID) + """,
-                                """ + str(Shot_Number) + """,
-                                """ + str(Distance2Hole) + """,
-                                """ + str(Club_ID) + """,
+                                '""" + str(Shot_ID) + """',
+                                '""" + str(Hole_ID) + """',
+                                '""" + str(Shot_Number) + """',
+                                '""" + str(Distance2Hole) + """',
+                                '""" + str(Club_ID) + """',
                                 '""" + str(Lie) + """',
                                 '""" + str(Desired_Shot) + """',
                                 '""" + str(Slope) + """',
-                                """ + str(Recovery_Shot) + """,
+                                '""" + str(Recovery_Shot) + """',
                                 '""" + str(Shot_Type) + """',
-                                """ + str(Distance_After) + """,
-                                """ + str(In_the_Hole) + """,
+                                '""" + str(Distance_After) + """',
+                                '""" + str(In_the_Hole) + """',
                                 '""" + str(Fall) + """'
                             )"""
                             ))
@@ -105,18 +105,18 @@ class AccessWrite():
                             ([Round ID], [Player ID], [Total Score], [Total Par], [Holes Played], [Tees Played], [Course Played], [Competition?], [Weather], [Wind], [Date], [Score2Par])
                             VALUES 
                             (
-                                """ + str(Round_ID) + """,
-                                """ + str(Player_ID) + """,
-                                """ + str(Total_Score) + """,
-                                """ + str(Total_Par) + """,
-                                """ + str(Holes_Played) + """,
+                                '""" + str(Round_ID) + """',
+                                '""" + str(Player_ID) + """',
+                                '""" + str(Total_Score) + """',
+                                '""" + str(Total_Par) + """',
+                                '""" + str(Holes_Played) + """',
                                 '""" + str(Tees_Played) + """',
-                                """ + str(Course_Played_ID) + """,
-                                """ + str(Competition_Bool) + """,
+                                '""" + str(Course_Played_ID) + """',
+                                '""" + str(Competition_Bool) + """',
                                 '""" + str(Weather) + """',
                                 '""" + str(Wind) + """',
                                 '""" + str(Date) + """',
-                                """ + str(Score2Par) + """
+                                '""" + str(Score2Par) + """'
                             )"""
                             ))
             s.commit()
@@ -128,21 +128,72 @@ class AccessWrite():
                             ([Course ID], [Course Name], [Course Par], [Course Holes], [Course Location])
                             VALUES 
                             (
-                                """ + str(Course_ID) + """,
+                                '""" + str(Course_ID) + """',
                                 '""" + str(Course_Name) + """',
-                                """ + str(Course_Par) + """,
-                                """ + str(Course_Holes) + """,
+                                '""" + str(Course_Par) + """',
+                                '""" + str(Course_Holes) + """',
                                 '""" + str(Course_Location) + """'
                             )"""
                             ))
             s.commit()
       
     def SaveCompleteRound(DF_Round, DF_Holes, DF_Shots):
-        pass
+        # Save Round
+        Round_ID = conn.query("SELECT MAX([Round ID]+0) as [NUM] FROM Rounds;").values[0][0]+1
+        Score2Par = DF_Round["Total Score"][0]-DF_Round["Total Par"][0]
+        AccessWrite.Round(Round_ID, 
+                          DF_Round["Player ID"][0], 
+                          DF_Round["Total Score"][0], 
+                          DF_Round["Total Par"][0], 
+                          DF_Round["Holes Played"][0], 
+                          DF_Round["Tees Played"][0], 
+                          Courses.ID(DF_Round["Course Played"][0]), 
+                          DF_Round["Competition?"][0], 
+                          DF_Round["Weather"][0], 
+                          DF_Round["Wind"][0], 
+                          DF_Round["Date"][0],
+                          Score2Par)
+        # Save Holes
+        Hole_1_ID = conn.query("SELECT MAX([Hole ID]+0) as [NUM] FROM Holes;").values[0][0]+1
+        for index, row in DF_Holes.iterrows():
+            Hole_ID = Hole_1_ID+row["Hole ID"]
+            AccessWrite.Hole(Hole_ID, 
+                             Round_ID, 
+                             row["Hole Number"], 
+                             row["Played As"], 
+                             row["Hole Par"], 
+                             row["Hole Score"], 
+                             row["Hole Handycap"], 
+                             row["GIR"], 
+                             row["UP&D"], 
+                             row["Fairway OTT"], 
+                             row["Bunker UP&D"], 
+                             row["Putts"], 
+                             row["Hole Length"])
+        # Save Shots
+        Shot_1_ID = conn.query("SELECT MAX([Shot ID]+0) as [NUM] FROM Shots;").values[0][0]+1
+        for index, row in DF_Shots.iterrows():
+            Shot_ID = Shot_1_ID+index
+            Hole_ID = Hole_1_ID+row["Hole ID"]
+            AccessWrite.Shot(Shot_ID, 
+                             Hole_ID, 
+                             row["Shot Number"], 
+                             row["Distance2Hole"], 
+                             Clubs.ID(row["Clubs"]), 
+                             row["Lie"], 
+                             row["Desired Shot Type"], 
+                             row["Slope"], 
+                             row["Recovery Shot?"], 
+                             row["Shot Type"], 
+                             row["Distance After Shot"], 
+                             row["In The Hole?"], 
+                             row["Fall (Only Putt)"])
+             
+             
                  
 class New_DFs():
     def Round(RoundID = 0):
-        Default = [0, 1, 76, 71, 1, "-", "-", False, "-", "-", "-", 7]
+        Default = [0, 1, 76, 71, 1, "-", "-", False, "-", "-", "-", 0]
         Columns = list(DFs.Rounds_df().columns)
         Data = {}
         for Col, Def in zip(Columns, Default):
@@ -184,20 +235,20 @@ class Courses():
         return list(DFs.Courses_df()["Course Name"])
 
     def ID(Name):
-        return Pandas.Locate(DFs.Courses_df(), "Course ID", "Course Name", Name)[0]
+        return Pandas.Locate("Course ID", "Course Name", "Courses", Name)[0]
     
     def Name(ID):
-        return Pandas.Locate(DFs.Courses_df(), "Course Name", "Course ID", ID)[0]
+        return Pandas.Locate("Course Name", "Course ID", "Courses", ID)[0]
 
 class Clubs():
     def All_names():
         return list(DFs.Clubs_df()["Club Name"])
 
     def ID(Name):
-        return Pandas.Locate(DFs.Clubs_df(), "Club ID", "Club Name", Name)[0]
+        return Pandas.Locate("Club ID", "Club Name", "Clubs", Name)[0]
     
     def Name(ID):
-        return Pandas.Locate(DFs.Clubs_df(), "Club Name", "Club ID", ID)[0]
+        return Pandas.Locate("Club Name", "Club ID", "Clubs", ID)[0]
 
 
 class Pandas():

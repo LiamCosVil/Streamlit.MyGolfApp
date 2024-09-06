@@ -44,11 +44,13 @@ def Save_Round():
         st.write("You scored: "+str(R_Score))
         st.write("To Par: "+str(R_Score-R_Par))
         st.divider()
-        st.write("Make sure the info above is correct")
+        st.write("Make sure the info above is correct before saving")
         col1, col2 = st.columns([5,2])
         Save_N, Save_Y = col2.columns(2)
         if Save_Y.button("Yes"):
-            
+            AccessWrite.SaveCompleteRound(New_Round_df, New_Holes_df, New_Shots_df)
+            New_Round_df, New_Holes_df, New_Shots_df = New_DFs.Round(), New_DFs.Holes(), New_DFs.Shots()
+            Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
             st.rerun()
         if Save_N.button("No"):
             st.rerun()
@@ -67,6 +69,7 @@ Restart = Restart_Col.button("Delete Round")
 if Restart:
     Restart_popup()
 if Save_Round_Col.button("Finish Round"):
+    New_Shots_df = New_Shots_df.sort_values(by=["Hole ID", "Shot Number"])
     Save_Round()
 
 with st.sidebar:
@@ -407,11 +410,9 @@ with Round_Tab:
             Hole_Form_Late.form_submit_button("Save Hole")
             
 
-                
+Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
+
 print(New_Shots_df)        
                 
 print(New_Holes_df)       
-print(New_Round_df)              
-
-Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
-
+print(New_Round_df)     
