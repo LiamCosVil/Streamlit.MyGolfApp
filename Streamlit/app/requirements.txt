@@ -1,2 +1,4 @@
 sqlalchemy
 openpyxl
+gcsfs
+st-files-connection
