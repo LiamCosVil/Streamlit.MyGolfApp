@@ -7,10 +7,10 @@ from st_files_connection import FilesConnection
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection("myGCDB", type="sql")
 
-# Perform query.
-df = conn.query('SELECT * FROM Clubs;', ttl="10m")
 
-print(df)
+# Perform query.
+df = conn.query('SELECT * FROM home;', ttl="10m")
+
 # Print results.
 for row in df.itertuples():
-    st.write(row)
+    st.write(f"{row.name} has a :{row.pet}:")
