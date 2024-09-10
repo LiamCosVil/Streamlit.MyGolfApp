@@ -8,8 +8,9 @@ from st_files_connection import FilesConnection
 conn = st.connection("myGCDB", type="sql")
 
 # Perform query.
-df = conn.query('SELECT * FROM home;', ttl="10m")
+df = conn.query('SELECT * FROM Clubs;', ttl="10m")
 
+print(df)
 # Print results.
 for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
+    st.write(row)
