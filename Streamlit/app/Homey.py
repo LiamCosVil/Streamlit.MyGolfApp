@@ -5,11 +5,11 @@ from st_files_connection import FilesConnection
 
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
-conn = st.connection('gcs', type='sql')
+conn = st.connection("myGCDB", type="sql")
 
-# df = conn.query("SELECT * FROM Clubs")
-df = conn.read("streamlit-bucket-try/Data_Test.sql", input_format="sql")
+# Perform query.
+df = conn.query('SELECT * FROM home;', ttl="10m")
 
 # Print results.
 for row in df.itertuples():
-    st.write(row)
+    st.write(f"{row.name} has a :{row.pet}:")
