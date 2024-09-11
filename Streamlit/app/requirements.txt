@@ -2,5 +2,6 @@ sqlalchemy
 openpyxl
 gcsfs
 st-files-connection
-psycopg2-binary
 mysqlclient == 2.2.4
+psycopg2-binary
+
