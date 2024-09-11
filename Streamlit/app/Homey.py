@@ -9,4 +9,4 @@ conn = st.connection("myGCDB", type="sql")
 connOld = st.connection("MYSG", type="sql")
 
 # Perform query.
-conn.query("CREATE TABLE TestClubs (ID ,Name);")
+conn.query("CREATE TABLE TestClubs (ID ,Name)")
