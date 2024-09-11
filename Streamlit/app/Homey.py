@@ -12,6 +12,8 @@ connOld = st.connection("MYSG", type="sql")
 dfOld = connOld.query('SELECT * FROM Clubs;')
 df = conn.query('SELECT * FROM Clubs;')
 
+print(df)
+print(dfOld)
 
 for index, row in dfOld.iterrows():
     st.write("INSERT INTO Clubs VALUES (" + str(row["Club ID"]) + ",'" + str(row["Club Name"]) + "')")
