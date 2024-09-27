@@ -11,3 +11,6 @@ df = conn.query('SELECT * from Test_Table;', ttl=600)
 
 for index, row in df.iterrows():
     st.write(str(row["colorID"]) + str(row["color"]))
+
+if st.button("DO THING"):
+    df = conn.query("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');", ttl=600)
