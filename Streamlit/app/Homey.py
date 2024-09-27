@@ -9,12 +9,12 @@ import os
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection('HomeDB', type='sql')
 
-df = conn.query('SELECT * from Test_Table;')
+df = conn.query('SELECT * from Test_Table;', ttl=0)
 os.write(1, f"{df}\n".encode()) 
 for index, row in df.iterrows():
     st.write(str(row["colorID"]) + str(row["color"]))
 
 if st.button("DO THE THING"):
     with conn.session as s:
-        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');"))
+        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');"), ttl=0)
         s.commit()
