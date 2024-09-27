@@ -16,5 +16,5 @@ for index, row in df.iterrows():
 
 if st.button("DO THE THING"):
     with conn.session as s:
-        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');"), ttl=0)
+        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');"))
         s.commit()
