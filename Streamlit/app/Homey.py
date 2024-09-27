@@ -19,7 +19,7 @@ if st.button("DO THE THING"):
     for index, row in df.iterrows():
         with conn.session as s:
             s.execute(text("""INSERT INTO Rounds
-                            (Round_ID, Player_ID, Total_Score, Total_Par, Holes_Played, Tess_Played, Course_ID, Competition,
+                            (Round_ID, Player_ID, Total_Score, Total_Par, Holes_Played, Tees_Played, Course_ID, Competition,
                             Weather, Wind, Date, Score2Par) 
                             VALUES 
                             ("""+str(row["Round ID"])+""", 
