@@ -7,7 +7,7 @@ import streamlit as st
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection('HomeDB', type='sql')
 
-df = conn.query('SELECT * from mytable;', ttl=600)
+df = conn.query('SELECT * from Test_Table;', ttl=600)
 
 for index, row in df.iterrows():
-    st.write(str(row["ID"]) + str(row["Name"]))
+    st.write(str(row["colorID"]) + str(row["color"]))
