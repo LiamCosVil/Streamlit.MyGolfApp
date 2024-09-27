@@ -2,5 +2,4 @@ sqlalchemy
 openpyxl
 gcsfs
 st-files-connection
-mysqlclient
 
