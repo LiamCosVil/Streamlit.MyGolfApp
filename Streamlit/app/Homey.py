@@ -7,7 +7,7 @@ import os
 
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
-conn = st.connection('MyGolf', type='sql')
+conn = st.connection('HomeDB', type='sql')
 connLoc = st.connection('MYSG', type='sql')
 
 df = connLoc.query('SELECT * from Clubs;', ttl=0)
