@@ -7,15 +7,18 @@ import os
 
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
-conn = st.connection('HomeDB', type='sql')
+conn = st.connection('MyGolf', type='sql')
+connLoc = st.connection('MYSG', type='sql')
 
-df = conn.query('SELECT * from Test_Table;', ttl=0)
+df = connLoc.query('SELECT * from Clubs;', ttl=0)
 os.write(1, f"{df}\n".encode()) 
-for index, row in df.iterrows():
-    st.write(str(row["colorID"]) + str(row["color"]))
+
+
 
 if st.button("DO THE THING"):
-    with conn.session as s:
-        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue');"))
-        s.commit()
+    for index, row in df.iterrows():
+        st.write(str(row["colorID"]) + str(row["color"]))
+        with conn.session as s:
+            s.execute(text("INSERT INTO Clubs (Club_ID, Club_Name) VALUES ("+str(row["Club ID"])+", '"+str(row["Club Name"])+"');"))
+            s.commit()
     st.rerun()
