@@ -17,7 +17,6 @@ os.write(1, f"{df}\n".encode())
 
 if st.button("DO THE THING"):
     for index, row in df.iterrows():
-        st.write(str(row["colorID"]) + str(row["color"]))
         with conn.session as s:
             s.execute(text("INSERT INTO Clubs (Club_ID, Club_Name) VALUES ("+str(row["Club ID"])+", '"+str(row["Club Name"])+"');"))
             s.commit()
