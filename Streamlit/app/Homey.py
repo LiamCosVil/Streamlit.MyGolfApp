@@ -9,7 +9,7 @@ from sqlalchemy.sql import text
 conn = st.connection('HomeDB', type='sql')
 
 df = conn.query('SELECT * from Test_Table;', ttl=600)
-
+print(df)
 for index, row in df.iterrows():
     st.write(str(row["colorID"]) + str(row["color"]))
 
