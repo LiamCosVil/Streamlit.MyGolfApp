@@ -26,13 +26,13 @@ if st.button("DO THE THING"):
                             """+str(row["Player ID"])+""", 
                             """+str(row["Total Score"])+""", 
                             """+str(row["Total Par"])+""", 
-                            """+str(row["Holes Played"])+"""
-                            '"""+str(row["Tees Played"])+"""'
-                            """+str(row["Course Played"])+"""
-                            """+str(row["Competition?"])+"""
-                            '"""+str(row["Weather"])+"""'
-                            '"""+str(row["Wind"])+"""'
-                            '"""+str(row["Date"])+"""'
+                            """+str(row["Holes Played"])+""",
+                            '"""+str(row["Tees Played"])+"""',
+                            """+str(row["Course Played"])+""",
+                            """+str(row["Competition?"])+""",
+                            '"""+str(row["Weather"])+"""',
+                            '"""+str(row["Wind"])+"""',
+                            '"""+str(row["Date"])+"""',
                             '"""+str(row["Score2Par"])+"""'
                             );"""))
             s.commit()
