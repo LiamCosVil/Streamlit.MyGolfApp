@@ -14,5 +14,5 @@ for index, row in df.iterrows():
 
 if st.button("DO THE THING"):
     with conn.session as s:
-        s.execute("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue') RETURNING colorID;")
+        s.execute(text("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue') RETURNING colorID;"))
         s.commit()
