@@ -12,7 +12,7 @@ df = conn.query('SELECT * from Test_Table;', ttl=600)
 for index, row in df.iterrows():
     st.write(str(row["colorID"]) + str(row["color"]))
 
-if st.button("DO THING"):
+if st.button("DO THE THING"):
     with conn.session as s:
         s.execute("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue') RETURNING colorID;")
         s.commit()
