@@ -1,6 +1,7 @@
 # streamlit_app.py
 
 import streamlit as st
+from sqlalchemy.sql import text
 # from st_files_connection import FilesConnection
 
 # Create connection object and retrieve file contents.
