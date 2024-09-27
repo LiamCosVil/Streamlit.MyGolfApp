@@ -10,7 +10,7 @@ import os
 conn = st.connection('HomeDB', type='sql')
 connLoc = st.connection('MYSG', type='sql')
 
-df = connLoc.query('SELECT * from Clubs;', ttl=0)
+df = connLoc.query('SELECT * from Courses;', ttl=0)
 os.write(1, f"{df}\n".encode()) 
 
 
@@ -18,6 +18,14 @@ os.write(1, f"{df}\n".encode())
 if st.button("DO THE THING"):
     for index, row in df.iterrows():
         with conn.session as s:
-            s.execute(text("INSERT INTO Clubs (Club_ID, Club_Name) VALUES ("+str(row["Club ID"])+", '"+str(row["Club Name"])+"');"))
+            s.execute(text("""INSERT INTO Courses
+                            (Course_ID, Course_Name, Course_Par, Course_Holes, Course_Location) 
+                            VALUES 
+                            ("""+str(row["Course ID"])+""", 
+                            '"""+str(row["Course Name"])+"""', 
+                            """+str(row["Course Par"])+""", 
+                            """+str(row["Course Holes"])+""", 
+                            '"""+str(row["Course Location"])+"""')
+                            ;"""))
             s.commit()
     st.rerun()
