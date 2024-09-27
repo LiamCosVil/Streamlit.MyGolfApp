@@ -9,7 +9,7 @@ import os
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection('HomeDB', type='sql')
 
-df = conn.query('SELECT * from Test_Table;', ttl=600)
+df = conn.query('SELECT * from Test_Table;')
 os.write(1, f"{df}\n".encode()) 
 for index, row in df.iterrows():
     st.write(str(row["colorID"]) + str(row["color"]))
