@@ -3,5 +3,4 @@ openpyxl
 gcsfs
 st-files-connection
 mysqlclient
-psycopg2-binary
 
