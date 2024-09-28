@@ -374,12 +374,14 @@ class LeaderBoard_S():
         
         Through = []
         Curr_Score = []
+        print(DF_LB)
         for index, row in DF_LB.iterrows():
             if row["Code_Value"]+Holes_Played > 17:
                 Through.append("F")
                 Curr_Score.append(ast.literal_eval(row["Scores"])[18])
             else:
                 Through.append(row["Code_Value"]+Holes_Played)
+                print(row["Scores"])
                 Curr_Score.append(ast.literal_eval(row["Scores"])[row["Code_Value"]+Holes_Played])
         
         DF_LB["Current_Score"] = Curr_Score
