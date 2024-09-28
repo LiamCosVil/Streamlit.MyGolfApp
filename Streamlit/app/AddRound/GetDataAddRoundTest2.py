@@ -203,9 +203,9 @@ class Rounds():
     
     def Return_Random_20(Only18 = False, Course = None, OnlyComp = False):
         if Only18 & (Course == None) & (not OnlyComp):
-            return list(conn.query("SELECT * FROM Rounds WHERE Holes_Played = 18 ORDER BY RANDOM() LIMIT 20;")["Round_ID"])
+            return list(conn.query("SELECT * FROM Rounds WHERE Holes_Played = 18 ORDER BY RAND() LIMIT 20;")["Round_ID"])
         elif (not Only18) & (Course == None) & (not OnlyComp):
-            return list(conn.query("SELECT * FROM Rounds ORDER BY RANDOM() LIMIT 20;")["Round_ID"]) 
+            return list(conn.query("SELECT * FROM Rounds ORDER BY RAND() LIMIT 20;")["Round_ID"]) 
         
         
     def All_IDs(Only18 = False, Course = None, OnlyComp = False):
