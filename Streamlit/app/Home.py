@@ -7,6 +7,6 @@ import streamlit as st
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection('HomeDB', type='sql')
 
-st.Write("HI")
+st.write("HI")
 
 
