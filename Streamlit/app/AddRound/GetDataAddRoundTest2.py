@@ -356,8 +356,10 @@ class LeaderBoard_S():
         
         ScoresDF = pd.DataFrame(data = Data)
         with pd.ExcelWriter('Streamlit/data/leaderboard_S.xlsx') as writer: 
+            print("SSCOOOORRRESSSDDDFFF")
+            print(ScoresDF)
             ScoresDF.to_excel(writer)
-        print(ScoresDF)
+        
         
     def RestartExcel():
         Data = {
