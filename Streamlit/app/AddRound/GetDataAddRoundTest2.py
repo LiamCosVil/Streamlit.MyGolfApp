@@ -57,8 +57,8 @@ class AccessWrite():
         with conn.session as s:
             s.execute  (text("""INSERT INTO Holes
                             (Hole_ID, Round_ID, Hole_Number, Played_As, Hole_Par, 
-                             Hole_Score, Hole_Handycap, GIR, UP_D, Fairway_OTT, 
-                             Bunker_UP_D, Putts, Hole_Length)
+                             Hole_Score, Hole_Handycap, GIR, Up_D, Fairway_OTT, 
+                             Bunker_Up_D, Putts, Hole_Length)
                             VALUES 
                             (
                                 """ + str(Hole_ID) + """,
@@ -175,9 +175,9 @@ class AccessWrite():
                              row["Hole_Score"], 
                              row["Hole_Handycap"], 
                              row["GIR"], 
-                             row["UP_D"], 
+                             row["Up_D"], 
                              row["Fairway_OTT"], 
-                             row["Bunker_UP_D"], 
+                             row["Bunker_Up_D"], 
                              row["Putts"], 
                              row["Hole_Length"])
         # Save Shots

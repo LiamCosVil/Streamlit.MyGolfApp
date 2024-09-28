@@ -3,7 +3,6 @@ import pandas as pd
 from AddRound.GetDataAddRoundTest2 import *
 
 
-
 def Calculate_Extras():
     # Calculate Extras
     TotalPar = 0
@@ -169,12 +168,7 @@ with LeaderBoard_S_Tab:
 with LeaderBoard_M_Tab:
     pass
 
-print(New_Shots_df)         
-print(New_Holes_df)       
-print(New_Round_df) 
-print(New_Shots_df.columns)
-print(New_Holes_df.columns)
-print(New_Round_df.columns)
+
 
 with Round_Tab:
     Holes_Cont_Empty = st.empty()
