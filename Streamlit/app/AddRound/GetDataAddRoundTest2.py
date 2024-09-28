@@ -348,7 +348,8 @@ class LeaderBoard_S():
             for Score in ScoreList:
                 CurrScore = ProgScoreList[-1]+Score
                 ProgScoreList.append(CurrScore)
-
+            print("PROOOOOG")
+            print(ProgScoreList)
             # Append Date of Round and pregressive scores list
             Data["Code_Value"].append(random.randint(0,6))
             Data["Scores"].append(ProgScoreList)
