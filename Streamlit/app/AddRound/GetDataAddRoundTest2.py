@@ -251,7 +251,7 @@ class Players():
         return list(DFs.Players_df()["Player_ID"])
     
     def ID(Name):
-        return Pandas.Locate("Player_ID", "Player_Name", "Players", Name)[0]
+        return Pandas.Locate("Player_ID", "Player_Name", "Players", "'"+Name+"'")[0]
     
     def Name(ID):
         return Pandas.Locate("Player_Name", "Player_ID", "Players", ID)[0]
@@ -261,7 +261,7 @@ class Courses():
         return list(DFs.Courses_df()["Course_Name"])
 
     def ID(Name):
-        return Pandas.Locate("Course_ID", "Course_Name", "Courses", Name)[0]
+        return Pandas.Locate("Course_ID", "Course_Name", "Courses", "'"+Name+"'")[0]
     
     def Name(ID):
         return Pandas.Locate("Course_Name", "Course_ID", "Courses", ID)[0]
@@ -271,7 +271,7 @@ class Clubs():
         return list(DFs.Clubs_df()["Club_Name"])
 
     def ID(Name):
-        return Pandas.Locate("Club_ID", "Club_Name", "Clubs", Name)[0]
+        return Pandas.Locate("Club_ID", "Club_Name", "Clubs", "'"+Name+"'")[0]
     
     def Name(ID):
         return Pandas.Locate("Club_Name", "Club_ID", "Clubs", ID)[0]
