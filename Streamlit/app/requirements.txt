@@ -1,0 +1,5 @@
+openpyxl
+gcsfs
+st-files-connection
+sqlalchemy
+pymysql

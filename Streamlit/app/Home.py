@@ -7,12 +7,6 @@ import streamlit as st
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.connection('HomeDB', type='sql')
 
-#df = conn.query('SELECT * from Test_Table;', ttl=600)
-
-#for index, row in df.iterrows():
-#    st.write(str(row["colorID"]) + str(row["color"]))
-#    
-#if st.button("DO THING"):
-#    conn.query("INSERT INTO Test_Table (colorID, color) VALUES (2, 'Blue') RETURNING colorID;", ttl=600)
+st.Write("HI")
 
 
