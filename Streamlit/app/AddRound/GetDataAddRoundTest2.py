@@ -8,28 +8,28 @@ conn = st.connection('HomeDB', type='sql')
 
 class DFs():
     def Courses_df():
-        df = conn.query("SELECT * FROM Courses")
+        df = conn.query("SELECT * FROM Courses", ttl=0)
         print(df)
         return df
 
     def Players_df():
-        df = conn.query("SELECT * FROM Players")
+        df = conn.query("SELECT * FROM Players", ttl=0)
         return df
 
     def Rounds_df():
-        df = conn.query("SELECT * FROM Rounds")
+        df = conn.query("SELECT * FROM Rounds", ttl=0)
         return df
 
     def Holes_df():
-        df = conn.query("SELECT * FROM Holes")
+        df = conn.query("SELECT * FROM Holes", ttl=0)
         return df
             
     def Shots_df():
-        df = conn.query("SELECT * FROM Shots")
+        df = conn.query("SELECT * FROM Shots", ttl=0)
         return df
 
     def Clubs_df():
-        df = conn.query("SELECT * FROM Clubs")
+        df = conn.query("SELECT * FROM Clubs", ttl=0)
         return df
  
 class Save_File():
@@ -75,7 +75,7 @@ class AccessWrite():
                                 """ + str(Putts) + """,
                                 """ + str(Hole_Length) + """
                             )"""
-                            ))
+                            ), ttl=0)
             s.commit()
         
     def Shot(Shot_ID, Hole_ID, Shot_Number, Distance2Hole, Club_ID, Lie, Desired_Shot, Slope, Recovery_Shot, Shot_Type, Distance_After, In_the_Hole, Fall):
@@ -102,7 +102,7 @@ class AccessWrite():
                                 """ + str(In_the_Hole) + """,
                                 '""" + str(Fall) + """'
                             )"""
-                            ))
+                            ), ttl=0)
             s.commit()
         
     def Round(Round_ID, Player_ID, Total_Score, Total_Par, Holes_Played, Tees_Played, Course_Played_ID, Competition_Bool, Weather, Wind, Date, Score2Par):
@@ -127,7 +127,7 @@ class AccessWrite():
                                 '""" + str(Date) + """',
                                 """ + str(Score2Par) + """
                             )"""
-                            ))
+                            ), ttl=0)
             s.commit()
         
     def Course(Course_Name, Course_Par, Course_Holes, Course_Location):    
@@ -144,12 +144,12 @@ class AccessWrite():
                                 """ + str(Course_Holes) + """,
                                 '""" + str(Course_Location) + """'
                             )"""
-                            ))
+                            ), ttl=0)
             s.commit()
       
     def SaveCompleteRound(DF_Round, DF_Holes, DF_Shots):
         # Save Round
-        Round_ID = conn.query("SELECT MAX(Round_ID+0) as NUM FROM Rounds;").values[0][0]+1
+        Round_ID = conn.query("SELECT MAX(Round_ID+0) as NUM FROM Rounds;", ttl=0).values[0][0]+1
         Score2Par = DF_Round["Total_Score"][0]-DF_Round["Total_Par"][0]
         AccessWrite.Round(Round_ID, 
                           DF_Round["Player_ID"][0], 
@@ -164,7 +164,7 @@ class AccessWrite():
                           DF_Round["Date"][0],
                           Score2Par)
         # Save Holes
-        Hole_1_ID = conn.query("SELECT MAX(Hole_ID+0) as NUM FROM Holes;").values[0][0]+1
+        Hole_1_ID = conn.query("SELECT MAX(Hole_ID+0) as NUM FROM Holes;", ttl=0).values[0][0]+1
         for index, row in DF_Holes.iterrows():
             Hole_ID = Hole_1_ID+row["Hole_ID"]
             AccessWrite.Hole(Hole_ID, 
@@ -181,7 +181,7 @@ class AccessWrite():
                              row["Putts"], 
                              row["Hole_Length"])
         # Save Shots
-        Shot_1_ID = conn.query("SELECT MAX(Shot_ID+0) as NUM FROM Shots;").values[0][0]+1
+        Shot_1_ID = conn.query("SELECT MAX(Shot_ID+0) as NUM FROM Shots;", ttl=0).values[0][0]+1
         for index, row in DF_Shots.iterrows():
             Shot_ID = Shot_1_ID+index
             Hole_ID = Hole_1_ID+row["Hole_ID"]
