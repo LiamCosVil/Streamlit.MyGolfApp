@@ -15,28 +15,5 @@ os.write(1, f"{df}\n".encode())
 
 
 
-#if st.button("DO THE THING"):
-#    for index, row in df.iterrows():
-#        with conn.session as s:
-#            s.execute(text("""INSERT INTO Shots
-                            (Shot_ID, Hole_ID, Shot_Number, Distance_2_hole, Club_ID, Lie,
-                            Desired_Shot_Type, Slope, Recovery_Shot, Shot_Type, 
-                            Distance_After, In_The_Hole, Fall_Putt) 
-                            VALUES 
-                            ("""+str(row["Shot ID"])+""", 
-                            """+str(row["Hole ID"])+""", 
-                            """+str(row["Shot Number"])+""", 
-                            """+str(row["Distance2Hole"])+""", 
-                            """+str(row["Clubs"])+""",
-                            '"""+str(row["Lie"])+"""',
-                            '"""+str(row["Desired Shot Type"])+"""',
-                            '"""+str(row["Slope"])+"""',
-                            """+str(row["Recovery Shot?"])+""",
-                            '"""+str(row["Shot Type"])+"""',
-                            """+str(row["Distance After Shot"])+""",
-                            """+str(row["In The Hole?"])+""",
-                            '"""+str(row["Fall (Only Putt)"])+"""'
-                            );"""))
-            s.commit()
-            os.write(1, f"{index}\n".encode()) 
+if st.button("DO THE THING"):
     st.rerun()
