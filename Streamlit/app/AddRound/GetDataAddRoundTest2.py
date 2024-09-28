@@ -34,7 +34,7 @@ class DFs():
  
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
-        with pd.ExcelWriter('data/SaveFile.xlsx') as writer:  
+        with pd.ExcelWriter('Streamlit/data/SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
             New_Shots_df.to_excel(writer, sheet_name="Save_Shots")
@@ -355,7 +355,7 @@ class LeaderBoard_S():
         
         
         ScoresDF = pd.DataFrame(data = Data)
-        with pd.ExcelWriter('data/leaderboard_S.xlsx') as writer: 
+        with pd.ExcelWriter('Streamlit/data/leaderboard_S.xlsx') as writer: 
             ScoresDF.to_excel(writer)
         print(ScoresDF)
         
@@ -363,12 +363,12 @@ class LeaderBoard_S():
         Data = {
         }
         ScoresDF = pd.DataFrame(data = Data)
-        with pd.ExcelWriter('data/leaderboard_S.xlsx') as writer: 
+        with pd.ExcelWriter('Streamlit/data/leaderboard_S.xlsx') as writer: 
             ScoresDF.to_excel(writer)
 
     def Return_DF(Holes_Played, Player_Score):
         
-        DF_LB = pd.read_excel('data/leaderboard_S.xlsx')
+        DF_LB = pd.read_excel('Streamlit/data/leaderboard_S.xlsx')
         DF_LB.drop(columns=DF_LB.columns[0], axis=1, inplace=True)
         
         
