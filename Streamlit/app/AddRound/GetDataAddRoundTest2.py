@@ -56,9 +56,9 @@ class AccessWrite():
         #Hole_ID = Holes_df.iloc[-1]["Hole Par"]+1
         with conn.session as s:
             s.execute  (text("""INSERT INTO Holes
-                            ([Hole_ID], [Round_ID], [Hole_Number], [Played_As], [Hole_Par], 
-                             [Hole_Score], [Hole_Handycap], [GIR], [UP_D], [Fairway_OTT], 
-                             [Bunker_UP_D], [Putts], [Hole_Length])
+                            (Hole_ID, Round_ID, Hole_Number, Played_As, Hole_Par, 
+                             Hole_Score, Hole_Handycap, GIR, UP_D, Fairway_OTT, 
+                             Bunker_UP_D, Putts, Hole_Length)
                             VALUES 
                             (
                                 """ + str(Hole_ID) + """,
@@ -82,10 +82,10 @@ class AccessWrite():
         #Shot_ID = Shots_df.iloc[-1]["Shot ID"]+1
         with conn.session as s:
             s.execute  (text("""INSERT INTO Shots
-                            ([Shot_ID], [Hole_ID], [Shot_Number], [Distance_2_Hole], [Club_ID], 
-                             [Lie], [Desired_Shot_Type], [Slope], [Recovery_Shot], 
-                             [Shot_Type], [Distance_After], [In_The_Hole], 
-                             [Fall_Putt])
+                            (Shot_ID, Hole_ID, Shot_Number, Distance_2_Hole, Club_ID, 
+                             Lie, Desired_Shot_Type, Slope, Recovery_Shot, 
+                             Shot_Type, Distance_After, In_The_Hole, 
+                             Fall_Putt)
                             VALUES 
                             (
                                 """ + str(Shot_ID) + """,
@@ -109,9 +109,9 @@ class AccessWrite():
         #Round_ID = Rounds_df.iloc[-1]["Round ID"]+1
         with conn.session as s:
             s.execute  (text("""INSERT INTO Rounds
-                            ([Round_ID], [Player_ID], [Total_Score], [Total_Par], 
-                             [Holes_Played], [Tees_Played], [Course_ID], 
-                             [Competition], [Weather], [Wind], [Date], [Score2Par])
+                            (Round_ID, Player_ID, Total_Score, Total_Par, 
+                             Holes_Played, Tees_Played, Course_ID, 
+                             Competition, Weather, Wind, Date, Score2Par)
                             VALUES 
                             (
                                 """ + str(Round_ID) + """,
@@ -134,8 +134,8 @@ class AccessWrite():
         Course_ID = int(DFs.Courses_df().iloc[-1]["Course ID"])+1 
         with conn.session as s:
             s.execute  (text("""INSERT INTO Courses
-                            ([Course_ID], [Course_Name], [Course_Par], [Course_Holes], 
-                             [Course_Location])
+                            (Course_ID, Course_Name, Course_Par, Course_Holes, 
+                             Course_Location)
                             VALUES 
                             (
                                 """ + str(Course_ID) + """,
@@ -203,14 +203,14 @@ class Rounds():
     
     def Return_Random_20(Only18 = False, Course = None, OnlyComp = False):
         if Only18 & (Course == None) & (not OnlyComp):
-            return list(conn.query("SELECT * FROM Rounds WHERE [Holes_Played] == 18 ORDER BY RANDOM() LIMIT 20;")["Round_ID"])
+            return list(conn.query("SELECT * FROM Rounds WHERE Holes_Played == 18 ORDER BY RANDOM() LIMIT 20;")["Round_ID"])
         elif (not Only18) & (Course == None) & (not OnlyComp):
             return list(conn.query("SELECT * FROM Rounds ORDER BY RANDOM() LIMIT 20;")["Round_ID"]) 
         
         
     def All_IDs(Only18 = False, Course = None, OnlyComp = False):
         if Only18 & (Course == None) & (not OnlyComp):
-            return list(conn.query("SELECT * FROM Rounds WHERE [Holes_Played] == 18")["Round_ID"])
+            return list(conn.query("SELECT * FROM Rounds WHERE Holes_Played == 18")["Round_ID"])
         elif (not Only18) & (Course == None) & (not OnlyComp):
             return list(conn.query("SELECT * FROM Rounds")["Round_ID"]) 
                 
@@ -280,7 +280,7 @@ class Clubs():
 class Pandas():
     
     def Locate(Return_Column, Search_Column, Search_Table, Search_Value):
-        Single_df = conn.query('SELECT ['+str(Return_Column)+'] FROM ['+str(Search_Table)+'] WHERE ['+str(Search_Column)+'] = '+str(Search_Value)+';')
+        Single_df = conn.query('SELECT '+str(Return_Column)+' FROM '+str(Search_Table)+' WHERE '+str(Search_Column)+' = '+str(Search_Value)+';')
         Name = Single_df[str(Return_Column)].tolist()
         return Name
  
@@ -329,7 +329,7 @@ class LeaderBoard_S():
         
         for RoundID in IDS_20_RAND:
             # Return all holes from that Round (Only HoleNum Par and Score)
-            TheDB = conn.query("SELECT `Hole_Number`, `Hole_Par`, `Hole_Score` FROM Holes WHERE `Round_ID` = "+str(RoundID)+";")
+            TheDB = conn.query("SELECT Hole_Number, Hole_Par, Hole_Score FROM Holes WHERE Round_ID = "+str(RoundID)+";")
             # Order the holes by Hole Num
             for index, row in TheDB.iterrows():
                 Val_Int = int(row['Hole_Par'])
