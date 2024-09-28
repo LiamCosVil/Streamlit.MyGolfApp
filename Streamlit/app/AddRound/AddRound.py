@@ -172,6 +172,9 @@ with LeaderBoard_M_Tab:
 print(New_Shots_df)         
 print(New_Holes_df)       
 print(New_Round_df) 
+print(New_Shots_df.columns)
+print(New_Holes_df.columns)
+print(New_Round_df.columns)
 
 with Round_Tab:
     Holes_Cont_Empty = st.empty()
