@@ -288,11 +288,11 @@ with Round_Tab:
                         All_Clubs = Clubs.All_names()
                         SI_Club = COL_Club.selectbox("Club Used",
                                                   All_Clubs,
-                                                  index=Extras.Return_Index_Of(New_Shots_df.at[DF_Shot_ID, "Clubs"],All_Clubs),
+                                                  index=Extras.Return_Index_Of(New_Shots_df.at[DF_Shot_ID, "Club_ID"],All_Clubs),
                                                   key="SIClub"+str(Hole_Number+1)+str(Shot_Num+1))
-                        New_Shots_df.at[DF_Shot_ID, "Clubs"] = SI_Club
+                        New_Shots_df.at[DF_Shot_ID, "Club_ID"] = SI_Club
                     else:
-                        New_Shots_df.at[DF_Shot_ID, "Clubs"] = "Putter"
+                        New_Shots_df.at[DF_Shot_ID, "Club_ID"] = "Putter"
                     # Lie
                     All_Lies = ["Fairway", "Fairway (Bad Lie)", "Green", "Bunker (Soft)", "Bunker (Hard)", "Semi Rough", "Rough", "Heavy Rough", "Bushes & Tall Grass", "Off a Tee"]
                     SI_Lie = COL_Lie.selectbox("How was the Lie?",
