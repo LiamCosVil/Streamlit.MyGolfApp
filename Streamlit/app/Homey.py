@@ -31,7 +31,7 @@ if st.button("DO THE THING"):
                             '"""+str(row["Lie"])+"""',
                             '"""+str(row["Desired Shot Type"])+"""',
                             '"""+str(row["Slope"])+"""',
-                            """+str(row["Revovery Shot?"])+""",
+                            """+str(row["Recovery Shot?"])+""",
                             '"""+str(row["Shot Type"])+"""',
                             """+str(row["Distance After Shot"])+""",
                             """+str(row["In The Hole?"])+""",
