@@ -374,6 +374,7 @@ class LeaderBoard_S():
         
         Through = []
         Curr_Score = []
+        print("DFFFF___LLLBBB")
         print(DF_LB)
         for index, row in DF_LB.iterrows():
             if row["Code_Value"]+Holes_Played > 17:
