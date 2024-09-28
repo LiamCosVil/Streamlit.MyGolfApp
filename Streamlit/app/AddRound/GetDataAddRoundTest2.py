@@ -336,7 +336,7 @@ class LeaderBoard_S():
                 row['Hole_Par'] = Val_Int
                 Val_Int = int(row['Hole_Score'])
                 row['Hole_Score'] = Val_Int
-                Val_Int = int(row['Hole _Number'])
+                Val_Int = int(row['Hole_Number'])
                 row['Hole_Number'] = Val_Int
                 
             TheDB = TheDB.sort_values(by=['Hole_Number'])
