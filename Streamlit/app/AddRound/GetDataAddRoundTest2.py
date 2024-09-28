@@ -189,7 +189,7 @@ class AccessWrite():
                              Hole_ID, 
                              row["Shot_Number"], 
                              row["Distance_2_Hole"], 
-                             Clubs.ID(row["Clubs"]), 
+                             Clubs.ID(row["Club_ID"]), 
                              row["Lie"], 
                              row["Desired_Shot_Type"], 
                              row["Slope"], 
