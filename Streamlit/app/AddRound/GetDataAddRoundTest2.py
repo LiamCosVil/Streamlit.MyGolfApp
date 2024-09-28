@@ -149,7 +149,7 @@ class AccessWrite():
       
     def SaveCompleteRound(DF_Round, DF_Holes, DF_Shots):
         # Save Round
-        Round_ID = conn.query("SELECT MAX([Round_ID]+0) as [NUM] FROM Rounds;").values[0][0]+1
+        Round_ID = conn.query("SELECT MAX(Round_ID+0) as NUM FROM Rounds;").values[0][0]+1
         Score2Par = DF_Round["Total_Score"][0]-DF_Round["Total_Par"][0]
         AccessWrite.Round(Round_ID, 
                           DF_Round["Player_ID"][0], 
@@ -164,7 +164,7 @@ class AccessWrite():
                           DF_Round["Date"][0],
                           Score2Par)
         # Save Holes
-        Hole_1_ID = conn.query("SELECT MAX([Hole_ID]+0) as [NUM] FROM Holes;").values[0][0]+1
+        Hole_1_ID = conn.query("SELECT MAX(Hole_ID+0) as NUM FROM Holes;").values[0][0]+1
         for index, row in DF_Holes.iterrows():
             Hole_ID = Hole_1_ID+row["Hole_ID"]
             AccessWrite.Hole(Hole_ID, 
@@ -181,7 +181,7 @@ class AccessWrite():
                              row["Putts"], 
                              row["Hole_Length"])
         # Save Shots
-        Shot_1_ID = conn.query("SELECT MAX([Shot_ID]+0) as [NUM] FROM Shots;").values[0][0]+1
+        Shot_1_ID = conn.query("SELECT MAX(Shot_ID+0) as NUM FROM Shots;").values[0][0]+1
         for index, row in DF_Shots.iterrows():
             Shot_ID = Shot_1_ID+index
             Hole_ID = Hole_1_ID+row["Hole_ID"]
