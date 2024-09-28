@@ -28,14 +28,14 @@ if st.button("DO THE THING"):
                             """+str(row["Shot Number"])+""", 
                             """+str(row["Distance2Hole"])+""", 
                             """+str(row["Clubs"])+""",
-                            """+str(row["Lie"])+""",
-                            """+str(row["Desired Shot Type"])+""",
-                            """+str(row["Slope"])+""",
+                            '"""+str(row["Lie"])+"""',
+                            '"""+str(row["Desired Shot Type"])+"""',
+                            '"""+str(row["Slope"])+"""',
                             """+str(row["Revovery Shot?"])+""",
-                            """+str(row["Shot Type"])+""",
+                            '"""+str(row["Shot Type"])+"""',
                             """+str(row["Distance After Shot"])+""",
                             """+str(row["In The Hole?"])+""",
-                            """+str(row["Fall (Only Putt)"])+"""
+                            '"""+str(row["Fall (Only Putt)"])+"""'
                             );"""))
             s.commit()
             os.write(1, f"{index}\n".encode()) 
