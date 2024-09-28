@@ -75,7 +75,7 @@ class AccessWrite():
                                 """ + str(Putts) + """,
                                 """ + str(Hole_Length) + """
                             )"""
-                            ), ttl=0)
+                            ))
             s.commit()
         
     def Shot(Shot_ID, Hole_ID, Shot_Number, Distance2Hole, Club_ID, Lie, Desired_Shot, Slope, Recovery_Shot, Shot_Type, Distance_After, In_the_Hole, Fall):
@@ -102,7 +102,7 @@ class AccessWrite():
                                 """ + str(In_the_Hole) + """,
                                 '""" + str(Fall) + """'
                             )"""
-                            ), ttl=0)
+                            ))
             s.commit()
         
     def Round(Round_ID, Player_ID, Total_Score, Total_Par, Holes_Played, Tees_Played, Course_Played_ID, Competition_Bool, Weather, Wind, Date, Score2Par):
@@ -127,7 +127,7 @@ class AccessWrite():
                                 '""" + str(Date) + """',
                                 """ + str(Score2Par) + """
                             )"""
-                            ), ttl=0)
+                            ))
             s.commit()
         
     def Course(Course_Name, Course_Par, Course_Holes, Course_Location):    
@@ -144,7 +144,7 @@ class AccessWrite():
                                 """ + str(Course_Holes) + """,
                                 '""" + str(Course_Location) + """'
                             )"""
-                            ), ttl=0)
+                            ))
             s.commit()
       
     def SaveCompleteRound(DF_Round, DF_Holes, DF_Shots):
