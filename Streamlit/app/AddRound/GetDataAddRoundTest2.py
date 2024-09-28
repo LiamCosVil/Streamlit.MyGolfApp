@@ -40,13 +40,13 @@ class Save_File():
             New_Shots_df.to_excel(writer, sheet_name="Save_Shots")
 
     def Read():
-        New_Round_df = pd.read_excel('data/SaveFile.xlsx', sheet_name="Save_Round")
+        New_Round_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Round")
         New_Round_df.drop(columns=New_Round_df.columns[0], axis=1, inplace=True)
         
-        New_Holes_df = pd.read_excel('data/SaveFile.xlsx', sheet_name="Save_Holes")
+        New_Holes_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Holes")
         New_Holes_df.drop(columns=New_Holes_df.columns[0], axis=1, inplace=True)
         
-        New_Shots_df = pd.read_excel('data/SaveFile.xlsx', sheet_name="Save_Shots")
+        New_Shots_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         return New_Round_df, New_Holes_df, New_Shots_df
