@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 from sqlalchemy.sql import text
+import random
+import ast
 
 conn = st.connection('MYSG', type='sql')
 
@@ -32,19 +34,19 @@ class DFs():
  
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
-        with pd.ExcelWriter('Streamlit/data/SaveFile.xlsx') as writer:  
+        with pd.ExcelWriter('data\SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
             New_Shots_df.to_excel(writer, sheet_name="Save_Shots")
 
     def Read():
-        New_Round_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Round")
+        New_Round_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Round")
         New_Round_df.drop(columns=New_Round_df.columns[0], axis=1, inplace=True)
         
-        New_Holes_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Holes")
+        New_Holes_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Holes")
         New_Holes_df.drop(columns=New_Holes_df.columns[0], axis=1, inplace=True)
         
-        New_Shots_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Shots")
+        New_Shots_df = pd.read_excel('data\SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         return New_Round_df, New_Holes_df, New_Shots_df
@@ -189,7 +191,23 @@ class AccessWrite():
                              row["In The Hole?"], 
                              row["Fall (Only Putt)"])
              
-             
+class Rounds():
+    
+    def Return_Random_20(Only18 = False, Course = None, OnlyComp = False):
+        if Only18 & (Course == None) & (not OnlyComp):
+            return list(conn.query("SELECT * FROM Rounds WHERE [Holes Played] == '18' ORDER BY RANDOM() LIMIT 20;")["Round ID"])
+        elif (not Only18) & (Course == None) & (not OnlyComp):
+            return list(conn.query("SELECT * FROM Rounds ORDER BY RANDOM() LIMIT 20;")["Round ID"]) 
+        
+        
+    def All_IDs(Only18 = False, Course = None, OnlyComp = False):
+        if Only18 & (Course == None) & (not OnlyComp):
+            return list(conn.query("SELECT * FROM Rounds WHERE [Holes Played] == '18'")["Round ID"])
+        elif (not Only18) & (Course == None) & (not OnlyComp):
+            return list(conn.query("SELECT * FROM Rounds")["Round ID"]) 
+                
+    def Date(ID):
+        return Pandas.Locate("Date", "Round ID", "Rounds", ID)[0]
                  
 class New_DFs():
     def Round(RoundID = 0):
@@ -264,15 +282,148 @@ class Extras():
         for i in range(len(List)):
             if List[i] == Value:
                 return i    
-
-
     
 class LeaderBoard_S():
-    def Return_DF():
-        Data = {"Position": ["1", "2", "T3", "", "", "T6", "", "", "", ""], 
-                "Name (Date)": ["21 July 2013", "18 Jan 2020", "19 Feb 2022", "2 Oct 2014", "8 Jul 2014", "12 Mar 2014", "17 Jun 2021", "10 Nov 2019", " 9 Sep 2020", "9 Apr 2018"], 
-                "Score": ["-3", "-1", "E", "E", "E", "+1", "+1", "+1", "+1", "+1"], 
-                "Through": ["14", "15", "14", "16", "15", "15", "72", "16", "17", "72"]
+    
+    def Save_Rounds_4_Leadrerboard():
+        IDS_20_RAND = Rounds.Return_Random_20(Only18=True)
+        
+        Players_20 = [
+                      "WOODS",
+                      "McILROY",
+                      "SCHEFFLER",
+                      "SPIETH",
+                      "RAHM",
+                      "KOEPKA",
+                      "DeCHAMBEAU",
+                      "SCHAUFFELE",
+                      "NICKLAUS",
+                      "PALMER",
+                      "HOGAN",
+                      "PLAYER",
+                      "BALLESTEROS",
+                      "SCOTT",
+                      "MICKELSON",
+                      "THOMAS",
+                      "FOWLER",
+                      "OLAZABAL",
+                      "ELS",
+                      "JOHNSON D."
+                      ]
+        
+        random.shuffle(Players_20)
+        
+        Data = {
+            "Name": Players_20[:len(IDS_20_RAND)],
+            "Code Value": [],
+            "Scores": []
+        }
+        
+        for RoundID in IDS_20_RAND:
+            # Return all holes from that Round (Only HoleNum Par and Score)
+            TheDB = conn.query("SELECT `Hole Number`, `Hole Par`, `Hole Score` FROM Holes WHERE `Round ID` = '"+str(RoundID)+"';")
+            # Order the holes by Hole Num
+            for index, row in TheDB.iterrows():
+                Val_Int = int(row['Hole Par'])
+                row['Hole Par'] = Val_Int
+                Val_Int = int(row['Hole Score'])
+                row['Hole Score'] = Val_Int
+                Val_Int = int(row['Hole Number'])
+                row['Hole Number'] = Val_Int
+                
+            TheDB = TheDB.sort_values(by=['Hole Number'])
+            # Create a list of the Pregressive Score
+            ScoreList = []
+            for index, row in TheDB.iterrows():
+                ScoreList.append(row["Hole Score"]-row["Hole Par"])
+            ProgScoreList = [0]
+            for Score in ScoreList:
+                CurrScore = ProgScoreList[-1]+Score
+                ProgScoreList.append(CurrScore)
+
+            # Append Date of Round and pregressive scores list
+            Data["Code Value"].append(random.randint(0,6))
+            Data["Scores"].append(ProgScoreList)
+        
+        
+        ScoresDF = pd.DataFrame(data = Data)
+        with pd.ExcelWriter('data/leaderboard_S.xlsx') as writer: 
+            ScoresDF.to_excel(writer)
+        print(ScoresDF)
+        
+    def RestartExcel():
+        Data = {
+        }
+        ScoresDF = pd.DataFrame(data = Data)
+        with pd.ExcelWriter('data/leaderboard_S.xlsx') as writer: 
+            ScoresDF.to_excel(writer)
+
+    def Return_DF(Holes_Played, Player_Score):
+        
+        DF_LB = pd.read_excel('data/leaderboard_S.xlsx')
+        DF_LB.drop(columns=DF_LB.columns[0], axis=1, inplace=True)
+        
+        
+        Through = []
+        Curr_Score = []
+        for index, row in DF_LB.iterrows():
+            if row["Code Value"]+Holes_Played > 17:
+                Through.append("F")
+                Curr_Score.append(ast.literal_eval(row["Scores"])[18])
+            else:
+                Through.append(row["Code Value"]+Holes_Played)
+                Curr_Score.append(ast.literal_eval(row["Scores"])[row["Code Value"]+Holes_Played])
+        
+        DF_LB["Current Score"] = Curr_Score
+        DF_LB["Through"] = Through
+        
+        My_DF_LB = {"Name": "Current Round", "Code Value": 0, "Scores": [], "Current Score": Player_Score, "Through": Holes_Played}
+        
+        DF_LB = DF_LB._append(My_DF_LB, ignore_index=True)
+        
+        DF_LB = DF_LB.sort_values(by=['Current Score'], ignore_index= True)
+        
+        
+        
+        # Generate Position Lists
+        
+        Positions = []
+        for index, row in DF_LB.iterrows():
+            if index != 0:
+                if row["Current Score"] == LB_Itt_Score:
+                    Positions.append(Positions[-1])
+                else:
+                    Positions.append(Positions[-1]+1)
+                LB_Itt_Score = row["Current Score"]
+            else:
+                Positions.append(1)
+                LB_Itt_Score = row["Current Score"]
+        
+        
+        LB_Itt_Pos = 0
+        Positions_text = []
+        for p in range(len(Positions)):
+            if LB_Itt_Pos == Positions[p]:
+                Positions_text.append("")
+            else:
+                try:
+                    if Positions[p] == Positions[p+1]:
+                        Positions_text.append("T"+str(Positions[p]))
+                    else:
+                        Positions_text.append(str(Positions[p]))
+                except IndexError:
+                    Positions_text.append(str(Positions[p]))
+                LB_Itt_Pos = Positions[p]
+            
+                
+        DF_LB["Positions"] = Positions_text
+        
+    
+        
+        Data = {"Position": list(DF_LB["Positions"]), 
+                "Name (Date)": list(DF_LB["Name"]), 
+                "Score": list(DF_LB["Current Score"]), 
+                "Through": list(DF_LB["Through"]), 
                 }
         DF = pd.DataFrame(data = Data)
         return DF

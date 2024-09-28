@@ -3,6 +3,18 @@ import pandas as pd
 from AddRound.GetDataAddRoundTest2 import *
 
 
+def Calculate_Extras():
+    # Calculate Extras
+    TotalPar = 0
+    TotalScore = 0
+    for index, row in New_Holes_df.iterrows():
+        TotalPar += row["Hole Par"]
+        TotalScore += row["Hole Score"]
+    New_Round_df.at[0, "Total Par"] = TotalPar
+    New_Round_df.at[0, "Total Score"] = TotalScore
+    TotalScore2Par = TotalScore - TotalPar
+    New_Round_df.at[0, "Score2Par"] = TotalScore2Par
+
 New_Round_df, New_Holes_df, New_Shots_df = Save_File.Read()
 
 @st.dialog("Delete Round")
@@ -14,6 +26,7 @@ def Restart_popup():
         New_Round_df, New_Holes_df, New_Shots_df = New_DFs.Round(), New_DFs.Holes(), New_DFs.Shots()
         
         Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
+        LeaderBoard_S.RestartExcel()
         st.rerun()
     if Restart_N.button("No"):
         st.rerun()
@@ -130,16 +143,32 @@ with st.sidebar:
     New_Round_df.at[0, "Date"] = Date
 
     
-    Round_Form.form_submit_button("Save")
+    if Round_Form.form_submit_button("Save"):
+        LeaderBoard_S.Save_Rounds_4_Leadrerboard()
+        
 
 
 
 with LeaderBoard_S_Tab:
-    DF = LeaderBoard_S.Return_DF()
-    st.dataframe(data=DF, hide_index=True, use_container_width = True, selection_mode="single-row")
+    try:
+        DF = LeaderBoard_S.Return_DF(New_Round_df.at[0, "Holes Played"], New_Round_df.at[0, "Score2Par"])
+        st.dataframe(data=DF, 
+                    hide_index=True, 
+                    use_container_width = True, 
+                    selection_mode="single-row", 
+                    column_config={"Position":st.column_config.Column(width="small"),
+                                    "Name (Date)":st.column_config.Column(width="medium"),
+                                    "Score":st.column_config.Column(width="small"),
+                                    "Through":st.column_config.Column(width="small")
+                                    })
+    except IndexError:
+        st.header("Save the Sidebar Options before viewing leaderboard")
+
 
 with LeaderBoard_M_Tab:
     pass
+
+
 
 with Round_Tab:
     Holes_Cont_Empty = st.empty()
@@ -410,9 +439,10 @@ with Round_Tab:
             Hole_Form_Late.form_submit_button("Save Hole")
             
 
+Calculate_Extras()
+
 Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
 
-print(New_Shots_df)        
-                
+print(New_Shots_df)         
 print(New_Holes_df)       
 print(New_Round_df)     
