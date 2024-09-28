@@ -356,8 +356,6 @@ class LeaderBoard_S():
         
         ScoresDF = pd.DataFrame(data = Data)
         with pd.ExcelWriter('Streamlit/data/leaderboard_S.xlsx') as writer: 
-            print("SSCOOOORRRESSSDDDFFF")
-            print(ScoresDF)
             ScoresDF.to_excel(writer)
         
         
@@ -371,13 +369,14 @@ class LeaderBoard_S():
     def Return_DF(Holes_Played, Player_Score):
         
         DF_LB = pd.read_excel('Streamlit/data/leaderboard_S.xlsx')
+        print("DFFFF___LLLBBB")
+        print(DF_LB)
         DF_LB.drop(columns=DF_LB.columns[0], axis=1, inplace=True)
         
         
         Through = []
         Curr_Score = []
-        print("DFFFF___LLLBBB")
-        print(DF_LB)
+
         for index, row in DF_LB.iterrows():
             if row["Code_Value"]+Holes_Played > 17:
                 Through.append("F")
