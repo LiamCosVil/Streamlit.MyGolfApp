@@ -20,7 +20,7 @@ if st.button("DO THE THING"):
         with conn.session as s:
             s.execute(text("""INSERT INTO Holes
                             (Hole_ID, Round_ID, Hole_Number, Played_As, Hole_Par, Hole_Score, Hole_Handycap, GIR,
-                            Up_D, Fairway_OOT, Bunker_Up_D, Putts, Hole_Length) 
+                            Up_D, Fairway_OTT, Bunker_Up_D, Putts, Hole_Length) 
                             VALUES 
                             ("""+str(row["Hole ID"])+""", 
                             """+str(row["Round ID"])+""", 
