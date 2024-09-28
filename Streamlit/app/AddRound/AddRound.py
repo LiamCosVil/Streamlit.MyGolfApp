@@ -415,9 +415,9 @@ with Round_Tab:
             New_Holes_df.at[Hole_Number, "GIR"] = HI_GIR
             # UP&D
             HI_UP_D = HI_Col2.checkbox("UP&D",
-                                       value=New_Holes_df.at[Hole_Number, "UP_D"],
+                                       value=New_Holes_df.at[Hole_Number, "Up_D"],
                                       key="HIUP&D"+str(Hole_Number+1),)
-            New_Holes_df.at[Hole_Number, "UP_D"] = HI_UP_D
+            New_Holes_df.at[Hole_Number, "Up_D"] = HI_UP_D
             # Fairway
             HI_Fairway = HI_Col3.checkbox("Fairway OTT",
                                           value=New_Holes_df.at[Hole_Number, "Fairway_OTT"], 
@@ -425,9 +425,9 @@ with Round_Tab:
             New_Holes_df.at[Hole_Number, "Fairway_OTT"] = HI_Fairway
             # Bunker UP&D
             HI_Bunker_UP_D = HI_Col4.checkbox("Bunker Up&D",
-                                              value=New_Holes_df.at[Hole_Number, "Bunker_UP_D"], 
+                                              value=New_Holes_df.at[Hole_Number, "Bunker_Up_D"], 
                                       key="HIBunkerUP&D"+str(Hole_Number+1),)
-            New_Holes_df.at[Hole_Number, "Bunker_UP_D"] = HI_Bunker_UP_D
+            New_Holes_df.at[Hole_Number, "Bunker_Up_D"] = HI_Bunker_UP_D
             HI_Col1, HI_Col2, HI_Col3, HI_Col4 = Hole_Form_Late.columns(4)
             # Putts
             HI_Putts = HI_Col1.number_input("Putts", 
