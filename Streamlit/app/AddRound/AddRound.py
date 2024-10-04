@@ -280,7 +280,7 @@ with Round_Tab:
                     if SI_Shot_Number != 1:
                         SI_Shot_Distance = COL_Dist.number_input("Distance",
                                                                 min_value=0,
-                                                                value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
+                                                                value=float(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"]),
                                                                 step=0.1,
                                                                 key="SIDistance2Hole"+str(Hole_Number+1)+str(Shot_Num+1))
                         New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = SI_Shot_Distance
