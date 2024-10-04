@@ -234,7 +234,7 @@ class New_DFs():
             Data[Col] = [Def]        
         New_df = pd.DataFrame(Data)
         return New_df
-    def Shots(ShotID = "0-0", HoleID = 0, Distance = 100, Club = "Driver", Lie = "Off a Tee", Shot_Num = 1, Putt_Toggle = False):
+    def Shots(ShotID = "0-0", HoleID = 0, Distance = float(100), Club = "Driver", Lie = "Off a Tee", Shot_Num = 1, Putt_Toggle = False):
         Default = [ShotID, HoleID, Shot_Num, Distance, Club, Lie, "Straight", "Flat", False, "Straight", 1, False, "Not a Putter", Putt_Toggle]
         Columns = list(DFs.Shots_df().columns)+["Putt_Toggle"]
         Data = {}

@@ -75,7 +75,7 @@ def Save_Round(New_Round_df, New_Holes_df, New_Shots_df):
 Title_Con = st.container()
 Title_Col, Save_Round_Col, Restart_Col = Title_Con.columns([9,1,1])
 Other_Con = st.container()
-Round_Tab, LeaderBoard_S_Tab, LeaderBoard_M_Tab  = Other_Con.tabs(["Round", "Leaderboard (Single)", "Leaderboard (Monthly)"])
+Round_Tab, LeaderBoard_S_Tab  = Other_Con.tabs(["Round", "Leaderboard (Single)"])
 
 Title_Col.header("Add Round")
 Restart = Restart_Col.button("Delete Round")
@@ -147,8 +147,6 @@ with st.sidebar:
         LeaderBoard_S.Save_Rounds_4_Leadrerboard()
         
 
-
-
 with LeaderBoard_S_Tab:
     try:
         DF = LeaderBoard_S.Return_DF(New_Round_df.at[0, "Holes_Played"], New_Round_df.at[0, "Score2Par"])
@@ -163,10 +161,6 @@ with LeaderBoard_S_Tab:
                                     })
     except IndexError:
         st.header("Save the Sidebar Options before viewing leaderboard")
-
-
-with LeaderBoard_M_Tab:
-    pass
 
 
 
@@ -279,9 +273,9 @@ with Round_Tab:
                     # Distance2Hole
                     if SI_Shot_Number != 1:
                         SI_Shot_Distance = COL_Dist.number_input("Distance",
-                                                                min_value=0,
-                                                                value=float(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"]),
-                                                                step=0.1,
+                                                                min_value=0.0,
+                                                                value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
+                                                                step = 0.1,
                                                                 key="SIDistance2Hole"+str(Hole_Number+1)+str(Shot_Num+1))
                         New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = SI_Shot_Distance
                     # Club
@@ -446,4 +440,4 @@ Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
 
 print(New_Shots_df)         
 print(New_Holes_df)       
-print(New_Round_df)     
+print(New_Round_df) 
