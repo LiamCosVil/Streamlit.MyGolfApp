@@ -34,6 +34,10 @@ class DFs():
  
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
+
+        print("READEXCEL")
+        print(New_Shots_df["Distance_2_Hole"])        
+        
         with pd.ExcelWriter('Streamlit/data/SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
@@ -50,7 +54,7 @@ class Save_File():
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         print("READEXCEL")
-        print(New_Shots_df)
+        print(New_Shots_df["Distance_2_Hole"])  
         
         return New_Round_df, New_Holes_df, New_Shots_df
 
