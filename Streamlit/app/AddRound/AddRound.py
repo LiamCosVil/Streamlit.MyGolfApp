@@ -392,9 +392,13 @@ with Round_Tab:
             New_Holes_df.at[Hole_Number, "Hole_Length"] = HI_Hole_Len
             
             # Update 1st shot
+            print("PreH1")
+            print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
             Shot_ID = str(Hole_Number)+"-0"
             DF_Shot_ID = list(New_Shots_df.loc[New_Shots_df['Shot_ID'] == Shot_ID].index)[0]
             New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = HI_Hole_Len
+            print("PostH1")
+            print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
             
             Hole_Form_Early.form_submit_button("Save Hole Info")
                    
