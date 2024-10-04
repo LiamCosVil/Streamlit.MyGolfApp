@@ -52,6 +52,12 @@ class Save_File():
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
         try:
+            for index, row in New_Shots_df.iterrows():
+                row["Distance_2_Hole"] = float(row["Distance_2_Hole"])
+        except KeyError:
+            pass
+        
+        try:
             print("READSAVEFILE")
             print(New_Shots_df["Distance_2_Hole"])
         except KeyError:
