@@ -272,6 +272,7 @@ with Round_Tab:
                     New_Shots_df.at[DF_Shot_ID, "Shot_Number"] = SI_Shot_Number
                     # Distance2Hole
                     if SI_Shot_Number != 1:
+                        print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
                         SI_Shot_Distance = float(COL_Dist.number_input("Distance",
                                                                 min_value=0.0,
                                                                 value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
