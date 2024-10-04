@@ -221,7 +221,7 @@ with Round_Tab:
                     Putt_Toggle=New_DF_PT
                     
                      )], ignore_index=True)
-                
+                print(New_Shots_df["Distance_2_Hole"])
             if New_Holes_df.at[Hole_Number, "Shots_Played"] > 1:
                 if Rem_Shot_Col.button("Rmv", key="RemShot"+str(Hole_Number+1)):
                     # DELETE SHOTS FROM THAT HOLE
@@ -274,6 +274,7 @@ with Round_Tab:
                     New_Shots_df.at[DF_Shot_ID, "Shot_Number"] = SI_Shot_Number
                     # Distance2Hole
                     if SI_Shot_Number != 1:
+                        print(New_Shots_df["Distance_2_Hole"])
                         print("Distance2Hole: ")
                         print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
                         SI_Shot_Distance = float(COL_Dist.number_input("Distance",
