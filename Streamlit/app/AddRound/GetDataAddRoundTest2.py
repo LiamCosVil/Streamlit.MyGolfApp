@@ -51,6 +51,12 @@ class Save_File():
         New_Shots_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
+        try:
+            print("READSAVEFILE")
+            print(New_Shots_df["Distance_2_Hole"])
+        except KeyError:
+            pass
+        
         return New_Round_df, New_Holes_df, New_Shots_df
 
 class AccessWrite():
