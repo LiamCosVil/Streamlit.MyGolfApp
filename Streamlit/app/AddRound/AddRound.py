@@ -277,7 +277,7 @@ with Round_Tab:
 
                         SI_Shot_Distance = float(COL_Dist.number_input("Distance",
                                                                 min_value=0.0,
-                                                                value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
+                                                                value=float(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"]),
                                                                 step = 0.1,
                                                                 key="SIDistance2Hole"+str(Hole_Number+1)+str(Shot_Num+1)))
                         New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = SI_Shot_Distance
@@ -440,6 +440,5 @@ with Round_Tab:
             
 
 Calculate_Extras()
-print("PreSave")
-print(New_Shots_df["Distance_2_Hole"])
+
 Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)

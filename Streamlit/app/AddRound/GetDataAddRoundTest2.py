@@ -34,8 +34,6 @@ class DFs():
 class Save_File():
     def Write(New_Round_df, New_Holes_df, New_Shots_df):
         
-        print("SAVEFOLEWRIRTE")
-        print(New_Shots_df["Distance_2_Hole"])
         with pd.ExcelWriter('Streamlit/data/SaveFile.xlsx') as writer:  
             New_Round_df.to_excel(writer, sheet_name="Save_Round")
             New_Holes_df.to_excel(writer, sheet_name="Save_Holes")
@@ -51,17 +49,6 @@ class Save_File():
         New_Shots_df = pd.read_excel('Streamlit/data/SaveFile.xlsx', sheet_name="Save_Shots")
         New_Shots_df.drop(columns=New_Shots_df.columns[0], axis=1, inplace=True)
         
-        try:
-            for index, row in New_Shots_df.iterrows():
-                row["Distance_2_Hole"] = float(row["Distance_2_Hole"])
-        except KeyError:
-            pass
-        
-        try:
-            print("READSAVEFILE")
-            print(New_Shots_df["Distance_2_Hole"])
-        except KeyError:
-            pass
         
         return New_Round_df, New_Holes_df, New_Shots_df
 
