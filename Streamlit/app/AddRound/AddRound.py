@@ -101,7 +101,7 @@ with st.sidebar:
                  options= All_Tees,
                  #index=3
                  index= Extras.Return_Index_Of(New_Round_df.at[0, "Tees_Played"], All_Tees),
-                 on_change= Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
+                 
                  ))
     New_Round_df.at[0, "Tees_Played"] = Tees_Played
 
@@ -444,7 +444,8 @@ with Round_Tab:
             
 
 Calculate_Extras()
-
+print("PreSave")
+print(New_Shots_df["Distance_2_Hole"])
 Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
 
 print(New_Shots_df)         
