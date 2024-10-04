@@ -220,6 +220,8 @@ with Round_Tab:
                     Putt_Toggle=New_DF_PT
                     
                      )], ignore_index=True)
+                print("Add Hole")
+                print(New_Shots_df)
             if New_Holes_df.at[Hole_Number, "Shots_Played"] > 1:
                 if Rem_Shot_Col.button("Rmv", key="RemShot"+str(Hole_Number+1)):
                     # DELETE SHOTS FROM THAT HOLE
