@@ -277,7 +277,7 @@ with Round_Tab:
                                                                 value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
                                                                 step = 0.1,
                                                                 key="SIDistance2Hole"+str(Hole_Number+1)+str(Shot_Num+1))
-                        New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = SI_Shot_Distance
+                        New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = float(SI_Shot_Distance)
                     # Club
                     if not IS_Putt:
                         All_Clubs = Clubs.All_names()
