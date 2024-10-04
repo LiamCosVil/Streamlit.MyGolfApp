@@ -221,7 +221,7 @@ with Round_Tab:
                     Putt_Toggle=New_DF_PT
                     
                      )], ignore_index=True)
-                print(New_Shots_df["Distance_2_Hole"])
+                
             if New_Holes_df.at[Hole_Number, "Shots_Played"] > 1:
                 if Rem_Shot_Col.button("Rmv", key="RemShot"+str(Hole_Number+1)):
                     # DELETE SHOTS FROM THAT HOLE
@@ -274,9 +274,7 @@ with Round_Tab:
                     New_Shots_df.at[DF_Shot_ID, "Shot_Number"] = SI_Shot_Number
                     # Distance2Hole
                     if SI_Shot_Number != 1:
-                        print(New_Shots_df["Distance_2_Hole"])
-                        print("Distance2Hole: ")
-                        print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
+
                         SI_Shot_Distance = float(COL_Dist.number_input("Distance",
                                                                 min_value=0.0,
                                                                 value=New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"],
@@ -395,13 +393,11 @@ with Round_Tab:
             New_Holes_df.at[Hole_Number, "Hole_Length"] = HI_Hole_Len
             
             # Update 1st shot
-            print("PreH1")
-            print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
+
             Shot_ID = str(Hole_Number)+"-0"
             DF_Shot_ID = list(New_Shots_df.loc[New_Shots_df['Shot_ID'] == Shot_ID].index)[0]
             New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"] = HI_Hole_Len
-            print("PostH1")
-            print(New_Shots_df.at[DF_Shot_ID, "Distance_2_Hole"])
+
             
             Hole_Form_Early.form_submit_button("Save Hole Info")
                    
@@ -447,7 +443,3 @@ Calculate_Extras()
 print("PreSave")
 print(New_Shots_df["Distance_2_Hole"])
 Save_File.Write(New_Round_df, New_Holes_df, New_Shots_df)
-
-print(New_Shots_df)         
-print(New_Holes_df)       
-print(New_Round_df) 

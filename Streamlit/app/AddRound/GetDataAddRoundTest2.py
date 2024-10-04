@@ -9,7 +9,6 @@ conn = st.connection('HomeDB', type='sql')
 class DFs():
     def Courses_df():
         df = conn.query("SELECT * FROM Courses", ttl=0)
-        print(df)
         return df
 
     def Players_df():
@@ -351,8 +350,6 @@ class LeaderBoard_S():
             for Score in ScoreList:
                 CurrScore = ProgScoreList[-1]+Score
                 ProgScoreList.append(int(CurrScore))
-            print("PROOOOOG")
-            print(ProgScoreList)
             # Append Date of Round and pregressive scores list
             Data["Code_Value"].append(random.randint(0,6))
             Data["Scores"].append(ProgScoreList)
@@ -373,8 +370,8 @@ class LeaderBoard_S():
     def Return_DF(Holes_Played, Player_Score):
         
         DF_LB = pd.read_excel('Streamlit/data/leaderboard_S.xlsx')
-        print("DFFFF___LLLBBB")
-        print(DF_LB)
+
+        
         DF_LB.drop(columns=DF_LB.columns[0], axis=1, inplace=True)
         
         
@@ -387,7 +384,7 @@ class LeaderBoard_S():
                 Curr_Score.append(ast.literal_eval(row["Scores"])[18])
             else:
                 Through.append(row["Code_Value"]+Holes_Played)
-                print(row["Scores"])
+                
                 Curr_Score.append(ast.literal_eval(row["Scores"])[row["Code_Value"]+Holes_Played])
         
         DF_LB["Current_Score"] = Curr_Score
